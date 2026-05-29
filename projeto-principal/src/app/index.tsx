@@ -1,5 +1,5 @@
 import { Link } from 'expo-router';
-import { Image, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { Image, Pressable, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -100,10 +100,12 @@ export default function HomeScreen() {
                 Trabalho solicitado na cadeira de Programação Web e Mobile. Agora o jogo está integrado ao app Expo, sem usar links externos.
               </ThemedText>
 
-              <Link href="/jogo-da-forca" style={styles.button}>
-                <ThemedText type="linkPrimary" style={styles.buttonText}>
-                  Jogar
-                </ThemedText>
+              <Link href="/jogo-da-forca" asChild>
+                <Pressable style={styles.button}>
+                  <ThemedText type="linkPrimary" style={styles.buttonText}>
+                    Jogar
+                  </ThemedText>
+                </Pressable>
               </Link>
             </View>
           </View>
