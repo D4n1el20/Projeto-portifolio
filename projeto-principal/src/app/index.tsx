@@ -1,21 +1,34 @@
-import { Link } from 'expo-router';
-import { Image, Pressable, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { Image, Platform, ScrollView, StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+
+const cardShadow = Platform.select({
+  web: {
+    boxShadow: '0px 8px 18px rgba(0,0,0,0.08)',
+  },
+  default: {
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 8 },
+  },
+});
 
 export default function HomeScreen() {
   return (
     <ThemedView style={styles.screen}>
       <SafeAreaView style={styles.safeArea}>
         <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
-          <View style={styles.card}>
+          <View style={[styles.card, cardShadow]}>
             <View style={styles.sidebar}>
               <Image
                 source={require('../../assets/images/Minha-Foto.jpeg')}
                 style={styles.photo}
               />
+
               <ThemedText type="subtitle" style={styles.sidebarTitle}>
                 Habilidades
               </ThemedText>
@@ -52,15 +65,12 @@ export default function HomeScreen() {
               <ThemedText type="title" style={styles.title}>
                 Daniel Silva Costa
               </ThemedText>
-              <ThemedText style={styles.paragraph}>
-                Sou aluno do curso de Ciência da Computação, em busca de estágio na área de desenvolvimento de software.
-              </ThemedText>
 
               <ThemedText type="subtitle" style={styles.sectionTitle}>
                 Resumo
               </ThemedText>
               <ThemedText style={styles.paragraph}>
-                Estudante com projetos acadêmicos e experiência em desenvolvimento de soluções para Web e Mobile.
+                Estudante de Ciência da Computação com projetos em web e mobile, buscando oportunidades em desenvolvimento de software.
               </ThemedText>
 
               <ThemedText type="subtitle" style={styles.sectionTitle}>
@@ -70,7 +80,7 @@ export default function HomeScreen() {
                 Jovem Aprendiz Administrativo do Financeiro, ASA Indústria
               </ThemedText>
               <View style={styles.list}>
-                {['Criação de borderôs', 'Comparação de dados', 'Uso de tabelas Excel'].map((item) => (
+                {['Criação de borderôs', 'Comparação de dados', 'Uso de tabelas em Excel'].map((item) => (
                   <ThemedText key={item} style={styles.paragraph}>
                     • {item}
                   </ThemedText>
@@ -92,21 +102,6 @@ export default function HomeScreen() {
               <ThemedText style={styles.paragraph}>
                 Desenvolvimento de API offline para auxiliar equipe de robótica a mapear sítios arqueológicos.
               </ThemedText>
-
-              <ThemedText type="subtitle" style={styles.sectionTitle}>
-                Jogo da Forca
-              </ThemedText>
-              <ThemedText style={styles.paragraph}>
-                Trabalho solicitado na cadeira de Programação Web e Mobile. Agora o jogo está integrado ao app Expo, sem usar links externos.
-              </ThemedText>
-
-              <Link href="/jogo-da-forca" asChild>
-                <Pressable style={styles.button}>
-                  <ThemedText type="linkPrimary" style={styles.buttonText}>
-                    Jogar
-                  </ThemedText>
-                </Pressable>
-              </Link>
             </View>
           </View>
         </ScrollView>
@@ -135,10 +130,6 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     overflow: 'hidden',
     flexDirection: 'column',
-    shadowColor: '#000',
-    shadowOpacity: 0.08,
-    shadowRadius: 24,
-    shadowOffset: { width: 0, height: 10 },
     elevation: 10,
   },
   sidebar: {
@@ -179,17 +170,5 @@ const styles = StyleSheet.create({
   },
   list: {
     marginBottom: Spacing.two,
-  },
-  button: {
-    marginTop: Spacing.four,
-    alignSelf: 'flex-start',
-    backgroundColor: '#000000',
-    borderRadius: 12,
-    paddingVertical: Spacing.two,
-    paddingHorizontal: Spacing.five,
-  },
-  buttonText: {
-    color: '#ffffff',
-    fontWeight: '700',
   },
 });

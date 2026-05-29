@@ -1,10 +1,22 @@
 import { useState } from 'react';
-import { Pressable, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
-import { Link } from 'expo-router';
+import { Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { BottomTabInset, Spacing } from '@/constants/theme';
+
+const cardShadow = Platform.select({
+  web: {
+    boxShadow: '0px 8px 18px rgba(0,0,0,0.08)',
+  },
+  default: {
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 8 },
+  },
+});
 
 const palavras = [
   'web',
@@ -81,7 +93,7 @@ export default function JogoDaForcaScreen() {
             Jogo da Forca
           </ThemedText>
 
-          <View style={styles.forcaCard}>
+          <View style={[styles.forcaCard, cardShadow]}>
             <View style={styles.forcaHeader}>
               <View style={styles.forcaPole} />
               <View style={styles.forcaBeam} />
@@ -139,9 +151,6 @@ export default function JogoDaForcaScreen() {
             )}
           </View>
 
-          <Link href="/" style={styles.backButton}>
-            <ThemedText style={styles.backButtonText}>← Voltar para o portfólio</ThemedText>
-          </Link>
         </ScrollView>
       </SafeAreaView>
     </ThemedView>
