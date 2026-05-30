@@ -2,7 +2,7 @@
   "expo": {
     "name": "meu-app",
     "slug": "meu-app",
-    "owner": "Porjeto-portifolio-daniel",
+    "owner": "projeto-portifolio-daniel",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -40,6 +40,12 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "5fdddcf3-fe46-42d2-b6aa-3daec17833ab"
+      }
     }
   }
 }
