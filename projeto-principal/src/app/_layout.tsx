@@ -1,4 +1,5 @@
-import { DarkTheme, DefaultTheme, Tabs, ThemeProvider } from 'expo-router';
+import { Tabs } from 'expo-router';
+import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useColorScheme } from 'react-native';
 
 export default function RootLayout() {
