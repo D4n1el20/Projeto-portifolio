@@ -1,5 +1,6 @@
 import { Image, Platform, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Link } from 'expo-router';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -23,86 +24,52 @@ export default function HomeScreen() {
       <SafeAreaView style={styles.safeArea}>
         <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
           <View style={[styles.card, cardShadow]}>
-            <View style={styles.sidebar}>
-              <Image
-                source={require('../../assets/images/Minha-Foto.jpeg')}
-                style={styles.photo}
-              />
+            <Image
+              source={require('../../assets/images/Minha-Foto.jpeg')}
+              style={styles.photo}
+            />
 
-              <ThemedText type="subtitle" style={styles.sidebarTitle}>
-                Habilidades
-              </ThemedText>
-              <View style={styles.list}>
-                {[
-                  'Inglês intermediário',
-                  'Programação em Python',
-                  'Excel básico',
-                  'Programação em C',
-                  'Programação em Java',
-                  'Programação HTML',
-                ].map((item) => (
-                  <ThemedText key={item} style={styles.sidebarText}>
-                    • {item}
-                  </ThemedText>
-                ))}
-              </View>
+            <ThemedText type="title" style={styles.title}>
+              Daniel Silva Costa
+            </ThemedText>
 
-              <ThemedText type="subtitle" style={styles.sidebarTitle}>
-                Educação
-              </ThemedText>
-              <ThemedText style={styles.sidebarText}>
-                Cursando Ciência da Computação na Universidade Católica de Pernambuco
-              </ThemedText>
+            <ThemedText type="subtitle" style={styles.sectionTitle}>
+              Resumo
+            </ThemedText>
+            <ThemedText style={styles.paragraph}>
+              Estudante de Ciência da Computação com projetos em web e mobile, buscando oportunidades em desenvolvimento de software.
+            </ThemedText>
 
-              <ThemedText type="subtitle" style={styles.sidebarTitle}>
-                Contato
-              </ThemedText>
-              <ThemedText style={styles.sidebarText}>daniel1405costa@gmail.com</ThemedText>
-              <ThemedText style={styles.sidebarText}>WhatsApp: 81 99344-2633</ThemedText>
+            <ThemedText type="subtitle" style={styles.sectionTitle}>
+              Habilidades
+            </ThemedText>
+            <View style={styles.list}>
+              {[
+                'Inglês intermediário',
+                'Programação em Python',
+                'Excel básico',
+                'Programação em C',
+                'Programação em Java',
+                'Programação em HTML',
+              ].map((item) => (
+                <ThemedText key={item} style={styles.paragraph}>
+                  • {item}
+                </ThemedText>
+              ))}
             </View>
 
-            <View style={styles.content}>
-              <ThemedText type="title" style={styles.title}>
-                Daniel Silva Costa
-              </ThemedText>
+            <ThemedText type="subtitle" style={styles.sectionTitle}>
+              Educação
+            </ThemedText>
+            <ThemedText style={styles.paragraph}>
+              Cursando Ciência da Computação na Universidade Católica de Pernambuco.
+            </ThemedText>
 
-              <ThemedText type="subtitle" style={styles.sectionTitle}>
-                Resumo
-              </ThemedText>
-              <ThemedText style={styles.paragraph}>
-                Estudante de Ciência da Computação com projetos em web e mobile, buscando oportunidades em desenvolvimento de software.
-              </ThemedText>
-
-              <ThemedText type="subtitle" style={styles.sectionTitle}>
-                Experiência profissional
-              </ThemedText>
-              <ThemedText type="smallBold" style={styles.paragraph}>
-                Jovem Aprendiz Administrativo do Financeiro, ASA Indústria
-              </ThemedText>
-              <View style={styles.list}>
-                {['Criação de borderôs', 'Comparação de dados', 'Uso de tabelas em Excel'].map((item) => (
-                  <ThemedText key={item} style={styles.paragraph}>
-                    • {item}
-                  </ThemedText>
-                ))}
-              </View>
-
-              <ThemedText type="subtitle" style={styles.sectionTitle}>
-                Experiência acadêmica
-              </ThemedText>
-              <ThemedText type="smallBold" style={styles.paragraph}>
-                Projeto extensionista, Biblioteca Carangueijo Tabaiares
-              </ThemedText>
-              <ThemedText style={styles.paragraph}>
-                Workshop de Cubo Mágico para crianças, com foco em curiosidade, criatividade e coordenação motora.
-              </ThemedText>
-              <ThemedText type="smallBold" style={styles.paragraph}>
-                Projeto extensionista, Colégio Liceu Nóbrega de Artes e Ofícios
-              </ThemedText>
-              <ThemedText style={styles.paragraph}>
-                Desenvolvimento de API offline para auxiliar equipe de robótica a mapear sítios arqueológicos.
-              </ThemedText>
-            </View>
+            <ThemedText type="subtitle" style={styles.sectionTitle}>
+              Contato
+            </ThemedText>
+            <ThemedText style={styles.paragraph}>daniel1405costa@gmail.com</ThemedText>
+            <ThemedText style={styles.paragraph}>WhatsApp: 81 99344-2633</ThemedText>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -113,9 +80,11 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    backgroundColor: '#AB2E3B',
   },
   safeArea: {
     flex: 1,
+    backgroundColor: '#ffffff',
   },
   container: {
     paddingHorizontal: Spacing.four,
@@ -126,14 +95,8 @@ const styles = StyleSheet.create({
   card: {
     width: '100%',
     maxWidth: MaxContentWidth,
-    backgroundColor: '#ffffff',
-    borderRadius: 24,
-    overflow: 'hidden',
-    flexDirection: 'column',
-    elevation: 10,
-  },
-  sidebar: {
     backgroundColor: '#AB2E3B',
+    borderRadius: 24,
     padding: Spacing.four,
   },
   photo: {
@@ -143,30 +106,20 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.four,
     alignSelf: 'center',
   },
-  sidebarTitle: {
-    color: '#ffffff',
-    marginBottom: Spacing.one,
-    marginTop: Spacing.three,
-  },
-  sidebarText: {
-    color: '#ffffff',
-    marginBottom: Spacing.one,
-    lineHeight: 22,
-  },
-  content: {
-    backgroundColor: '#F5F5F5',
-    padding: Spacing.four,
-  },
   title: {
     marginBottom: Spacing.three,
+    color: '#ffffff',
+    textAlign: 'center',
   },
   sectionTitle: {
     marginTop: Spacing.four,
     marginBottom: Spacing.one,
+    color: '#ffffff',
   },
   paragraph: {
     marginBottom: Spacing.two,
-    color: '#1E1E1E',
+    color: '#ffffff',
+    lineHeight: 22,
   },
   list: {
     marginBottom: Spacing.two,
